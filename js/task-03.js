@@ -15,11 +15,15 @@ const images = [
 
 
 const galleryList = document.querySelector(`#gallery`)
-const myGallery = ({url, alt}) => {
-  return `<li><img src="${url}" alt="${alt}"></li>`
+const myGallery = gallery => {
+  return gallery.map(({ url, alt }) => {
+    return `<li><img src="${url}" alt="${alt}" width="600" height="500"></li>`
+  }).join('')
 }
-const galleryItem = images.map(myGallery).join('')
-console.log(galleryItem);
-galleryList.insertAdjacentHTML('beforeBegin', galleryItem)
+galleryList.insertAdjacentHTML('afterbegin', myGallery(images))
+gallery.style.display = 'flex'
+gallery.style.justifyContent = 'space-around'
+gallery.style.padding = '0'
+gallery.style.margin = '0'
 
-// insertAdjacentHTML() разбирает указанный текст как HTML или XML и вставляет полученные узлы (nodes) в DOM дерево в указанную позицию. 
+// insertAdjacentHTML() разбирает указанный текст как HTML или XML и вставляет полученные узлы (nodes) в DOM дерево в указанную позицию.
